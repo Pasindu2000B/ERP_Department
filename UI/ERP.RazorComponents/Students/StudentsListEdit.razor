@@ -16,7 +16,10 @@
         <MudTd DataLabel="Sign">@context.FullName</MudTd>
         <MudTd DataLabel="Name">@context.Email</MudTd>
         <MudTd DataLabel="">
-            <MudImage Src="images/woman.png" Width="40"/>
+            <MudFab OnClick="@(()=> Edit(@context.StudentId))"  Color="Color.Primary" 
+            StartIcon="@Icons.Material.Filled.Edit" Size="Size.Small" />
+            <MudFab Color="Color.Warning" StartIcon="@Icons.Material.Filled.Delete" Size="Size.Small" />
+            <MudFab Color="Color.Success" StartIcon="@Icons.Material.Filled.AccessTime" Size="Size.Small"/>
         </MudTd>
     </RowTemplate>
     <PagerContent>

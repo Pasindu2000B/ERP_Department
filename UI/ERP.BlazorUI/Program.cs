@@ -15,6 +15,9 @@ builder.Services.AddMudServices();
 
 builder.Services.AddSingleton<IStudentRepository, StudentRepositoryIM>();
 builder.Services.AddScoped<IViewStudentsByNameUseCase, ViewStudentsByNameUseCase>();
+builder.Services.AddScoped<IAddStudentUseCase, AddStudentUseCase>();
+builder.Services.AddScoped<IViewStudentById, ViewStudentById>();
+builder.Services.AddScoped<IEditStudentUseCase, EditStudentUseCase>();
 
 
 var app = builder.Build();

@@ -34,7 +34,7 @@ namespace ERP.Repository.InMemory
 
         public StudentRepositoryIM()
         {
-            CreateStudentList(200);
+            CreateStudentList(5);
         }
 
 
