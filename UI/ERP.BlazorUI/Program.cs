@@ -3,9 +3,20 @@ using ERP.Application.StudentApp.Students;
 using ERP.Application.StudentApp.Students.Interfaces;
 using ERP.BlazorUI.Components;
 using ERP.Repository.InMemory;
+using ERP.Repository.SQLite;
+using Microsoft.EntityFrameworkCore;
+
 using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configuration of EF Core SQLite
+ConfigurationManager configuration = builder.Configuration;
+
+builder.Services.AddDbContext<StudentDbContext>(opt => opt.UseSqlite(configuration.GetConnectionString("StudentDatabase"),
+     b => b.MigrationsAssembly("ERP.Repository.SQLite")));
+
+
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

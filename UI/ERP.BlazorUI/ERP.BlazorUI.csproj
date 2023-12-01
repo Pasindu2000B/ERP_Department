@@ -8,12 +8,17 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.8.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="MudBlazor" Version="6.11.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Application\ERP.Application.StudentApp\ERP.Application.StudentApp.csproj" />
     <ProjectReference Include="..\..\Domain\ERP.Domain.Core\ERP.Domain.Core.csproj" />
+    <ProjectReference Include="..\..\ERP.Repository.SQLite\ERP.Repository.SQLite.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ERP.Repository.InMemory\ERP.Repository.InMemory.csproj" />
     <ProjectReference Include="..\ERP.RazorComponents\ERP.RazorComponents.csproj" />
   </ItemGroup>
