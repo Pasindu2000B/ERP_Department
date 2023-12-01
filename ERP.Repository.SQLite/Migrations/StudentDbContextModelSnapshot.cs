@@ -48,7 +48,7 @@ namespace ERP.Repository.SQLite.Migrations
 
                     b.HasKey("StudentId");
 
-                    b.ToTable("students");
+                    b.ToTable("Students");
                 });
 #pragma warning restore 612, 618
         }

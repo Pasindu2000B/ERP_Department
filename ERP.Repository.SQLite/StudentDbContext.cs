@@ -16,6 +16,6 @@ namespace ERP.Repository.SQLite
 
         }
 
-        DbSet<Student> students { get; set; }
+        public DbSet<Student> Students { get; set; }
     }
 }

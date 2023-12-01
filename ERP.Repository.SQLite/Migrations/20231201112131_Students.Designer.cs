@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ERP.Repository.SQLite.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    [Migration("20231201061303_initial")]
-    partial class initial
+    [Migration("20231201112131_Students")]
+    partial class Students
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,7 +51,7 @@ namespace ERP.Repository.SQLite.Migrations
 
                     b.HasKey("StudentId");
 
-                    b.ToTable("students");
+                    b.ToTable("Students");
                 });
 #pragma warning restore 612, 618
         }

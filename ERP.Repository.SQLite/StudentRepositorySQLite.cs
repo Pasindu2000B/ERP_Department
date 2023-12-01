@@ -1,33 +1,57 @@
 ﻿using ERP.Application.StudentApp.Interfaces;
 using ERP.Domain.Core.Entity;
+using ERP.Repository.SQLite.Migrations;
+using Microsoft.EntityFrameworkCore;
 
 namespace ERP.Repository.SQLite
 {
     public class StudentRepositorySQLite : IStudentRepository
     {
+        private readonly StudentDbContext _context;
+
+        public StudentRepositorySQLite(StudentDbContext context)
+        {
+            _context = context;
+        }
+
         public Task AddStudentAsync(Student student)
         {
-            throw new NotImplementedException();
+            _context.Students.Add(student);
+            _context.SaveChanges();
+            return Task.CompletedTask;
         }
 
-        public Task EditStudentAsync(Student student)
+        public Task EditStudentAsync(Student std)
         {
-            throw new NotImplementedException();
+            var student = _context.Students.FirstOrDefault(x => x.StudentId == std.StudentId);
+
+            if (student != null)
+            {
+                student.FirstName = std.FirstName;
+                student.LastName = std.LastName;
+                student.Email = std.Email;
+                student.Phone = std.Phone;
+                student.Address = std.Address;
+            }
+
+            return Task.CompletedTask;
         }
 
-        public Task<bool> ExistAsync(Student student)
+        public async Task<bool> ExistAsync(Student student)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(_context.Students.Any(x => x.StudentId == student.StudentId));
+        }
+    
+
+        public async Task<IEnumerable<Student>> GetAllStudentsAsync(string name)
+        {
+            return await _context.Students.ToListAsync();
         }
 
-        public Task<IEnumerable<Student>> GetAllStudentsAsync(string name)
+        public async Task<Student> GetStudentById(int studentId)
         {
-            throw new NotImplementedException();
-        }
+            return await _context.Students.FirstOrDefaultAsync(x => x.StudentId == studentId);
 
-        public Task<Student> GetStudentById(int studentId)
-        {
-            throw new NotImplementedException();
         }
     }
 }
