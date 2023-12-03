@@ -8,14 +8,15 @@ using System.Threading.Tasks;
 
 namespace ERP.Repository.SQLite
 {
-    public class StudentDbContext : DbContext
+    public class BaseDbContext : DbContext
     {
-        public StudentDbContext(DbContextOptions<StudentDbContext> options)
+        public BaseDbContext(DbContextOptions<BaseDbContext> options)
             : base(options)
         {
 
         }
 
         public DbSet<Student> Students { get; set; }
+        public DbSet<Module> Modules { get; set; }
     }
 }

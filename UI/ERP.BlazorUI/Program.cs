@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Configuration of EF Core SQLite
 ConfigurationManager configuration = builder.Configuration;
 
-builder.Services.AddDbContext<StudentDbContext>(opt => opt.UseSqlite(configuration.GetConnectionString("StudentDatabase"),
+builder.Services.AddDbContext<BaseDbContext>(opt => opt.UseSqlite(configuration.GetConnectionString("StudentDatabase"),
      b => b.MigrationsAssembly("ERP.Repository.SQLite")));
 
 

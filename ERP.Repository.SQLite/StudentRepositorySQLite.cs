@@ -7,9 +7,9 @@ namespace ERP.Repository.SQLite
 {
     public class StudentRepositorySQLite : IStudentRepository
     {
-        private readonly StudentDbContext _context;
+        private readonly BaseDbContext _context;
 
-        public StudentRepositorySQLite(StudentDbContext context)
+        public StudentRepositorySQLite(BaseDbContext context)
         {
             _context = context;
         }

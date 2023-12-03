@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ERP.Repository.SQLite.Migrations
 {
-    [DbContext(typeof(StudentDbContext))]
+    [DbContext(typeof(BaseDbContext))]
     [Migration("20231201112131_Students")]
     partial class Students
     {
