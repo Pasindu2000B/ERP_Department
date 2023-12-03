@@ -3,9 +3,24 @@ using ERP.Application.StudentApp.Students;
 using ERP.Application.StudentApp.Students.Interfaces;
 using ERP.BlazorUI.Components;
 using ERP.Repository.InMemory;
+using ERP.Repository.PgSql;
+using ERP.Repository.SQLite;
+using Microsoft.EntityFrameworkCore;
+
 using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configuration of EF Core SQLite
+ConfigurationManager configuration = builder.Configuration;
+
+builder.Services.AddDbContext<BaseDbContext>(opt => opt.UseSqlite(configuration.GetConnectionString("StudentDatabase"),
+     b => b.MigrationsAssembly("ERP.Repository.SQLite")));
+
+builder.Services.AddDbContext<PgSqlDbContext>(opt => opt.UseNpgsql(configuration.GetConnectionString("PgSqlConnection"),
+     b => b.MigrationsAssembly("ERP.Repository.PgSql")));
+
+
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -13,7 +28,7 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddMudServices();
 
-builder.Services.AddSingleton<IStudentRepository, StudentRepositoryIM>();
+builder.Services.AddScoped<IStudentRepository, StudentRepositoryPgSql>();
 builder.Services.AddScoped<IViewStudentsByNameUseCase, ViewStudentsByNameUseCase>();
 builder.Services.AddScoped<IAddStudentUseCase, AddStudentUseCase>();
 builder.Services.AddScoped<IViewStudentById, ViewStudentById>();
