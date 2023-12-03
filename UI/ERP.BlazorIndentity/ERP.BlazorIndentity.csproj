@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ERP.Repository.PgSql\ERP.Repository.PgSql.csproj" />
-    <ProjectReference Include="..\ERP.Repository.SQLite\ERP.Repository.SQLite.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ERP.Repository.PgSql\ERP.Repository.PgSql.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ERP.Repository.SQLite\ERP.Repository.SQLite.csproj" />
   </ItemGroup>
 
 </Project>
