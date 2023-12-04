@@ -14,13 +14,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Configuration of EF Core SQLite
 ConfigurationManager configuration = builder.Configuration;
 
-builder.Services.AddDbContext<BaseDbContext>(opt => opt.UseSqlite(configuration.GetConnectionString("StudentDatabase"),
-     b => b.MigrationsAssembly("ERP.Repository.SQLite")));
+//builder.Services.AddDbContext<BaseDbContext>(opt => opt.UseSqlite(configuration.GetConnectionString("StudentDatabase"),
+//     b => b.MigrationsAssembly("ERP.Repository.SQLite")));
 
-builder.Services.AddDbContext<PgSqlDbContext>(opt => opt.UseNpgsql(configuration.GetConnectionString("PgSqlConnection"),
+//builder.Services.AddDbContext<PgSqlDbContext>(opt => opt.UseNpgsql(configuration.GetConnectionString("PgSqlConnection"),
+//     b => b.MigrationsAssembly("ERP.Repository.PgSql")));
+
+builder.Services.AddDbContextFactory<PgSqlDbContext>(opt => opt.UseNpgsql(configuration.GetConnectionString("PgSqlConnection"),
      b => b.MigrationsAssembly("ERP.Repository.PgSql")));
-
-
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

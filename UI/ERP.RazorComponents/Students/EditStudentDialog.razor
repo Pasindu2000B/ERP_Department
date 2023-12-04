@@ -18,7 +18,7 @@
     </DialogContent>
     <DialogActions>
         <MudButton OnClick="Cancel">Cancel</MudButton>
-        <MudButton Color="Color.Error" OnClick="EditStudent">Save</MudButton>
+        <MudButton Color="Color.Error" OnClick="SaveStudent">Save</MudButton>
     </DialogActions>
 </MudDialog>
 @code {
@@ -31,7 +31,7 @@
         MudDialog.Cancel();
     }
 
-    private void EditStudent()
+    private void SaveStudent()
     {
         
         Snackbar.Add("Student Edited", Severity.Success);
