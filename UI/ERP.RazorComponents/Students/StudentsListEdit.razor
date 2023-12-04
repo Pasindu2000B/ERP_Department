@@ -3,6 +3,7 @@
 
 @inject NavigationManager NavigationManager
 @inject IViewStudentsByNameUseCase ViewStudentsByNameUseCase
+@inject IDialogService DialogService
 
 <MudTable Items="@_students">
     <HeaderContent>
@@ -16,7 +17,7 @@
         <MudTd DataLabel="Sign">@context.FullName</MudTd>
         <MudTd DataLabel="Name">@context.Email</MudTd>
         <MudTd DataLabel="">
-            <MudFab OnClick="@(()=> Edit(@context.StudentId))"  Color="Color.Primary" 
+            <MudFab OnClick="@(()=> EditStudent(@context))"  Color="Color.Primary" 
             StartIcon="@Icons.Material.Filled.Edit" Size="Size.Small" />
             <MudFab Color="Color.Warning" StartIcon="@Icons.Material.Filled.Delete" Size="Size.Small" />
             <MudFab Color="Color.Success" StartIcon="@Icons.Material.Filled.AccessTime" Size="Size.Small"/>
@@ -45,10 +46,19 @@
     }   
 
 
-    void Edit(int studentId)
+    
+
+    async Task EditStudent(Student student)
     {
-        NavigationManager.NavigateTo($"/editstudent/{studentId}");
-        
+        var parameters = new DialogParameters<EditStudentDialog> { { x => x.student, student } };
+
+        var dialog = await DialogService.ShowAsync<EditStudentDialog>("Save",parameters);
+        var result = await dialog.Result;
+
+        if (!result.Canceled)
+        {
+            
+        }
     }
 
 }
