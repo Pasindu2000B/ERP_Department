@@ -25,8 +25,10 @@
             <MudMenuItem>Armory</MudMenuItem>
         </MudMenu>
         <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert"
-                       Color="Color.Inherit" Edge="Edge.End" />
+        <MudButton StartIcon="@Icons.Material.Filled.Login"
+                       Color="Color.Inherit" > Login </MudButton>
+        <MudButton StartIcon="@Icons.Material.Filled.Notes"
+                       Color="Color.Inherit" Edge="Edge.End"> Register </MudButton>
     </MudAppBar>
 
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
