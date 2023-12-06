@@ -21,4 +21,11 @@
     <ProjectReference Include="..\..\Application\ERP.Application.StudentApp\ERP.Application.StudentApp.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Administration\" />
+    <Folder Include="Department\" />
+    <Folder Include="Academic\" />
+    <Folder Include="SiteAdmin\" />
+  </ItemGroup>
+
 </Project>

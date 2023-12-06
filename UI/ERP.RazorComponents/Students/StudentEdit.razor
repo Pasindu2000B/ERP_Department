@@ -57,6 +57,7 @@
 @code {
     private Student model;
 
+   
 
     [Parameter]
     public int StudentId { get; set; }
@@ -117,8 +118,9 @@
         if (form.IsValid)
         {
             await EditStudentUseCase.ExecuteAsync(model);
+            
         }
-
+        
 
     }
 

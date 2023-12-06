@@ -26,6 +26,8 @@
 
 @code {
 
+    
+
     private List<Student> _students = new List<Student>();
     [Parameter]
     public string SearchTerm { get; set; } = string.Empty;
@@ -41,7 +43,7 @@
         _students = (await ViewStudentsByNameUseCase.ExecuteAsync(SearchTerm)).ToList();
     }   
 
-
+    
     void Edit(int studentId)
     {
         NavigationManager.NavigateTo($"/editstudent/{studentId}");
