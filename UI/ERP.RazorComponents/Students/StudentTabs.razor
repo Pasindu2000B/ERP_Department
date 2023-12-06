@@ -1,24 +1,36 @@
 ﻿@using MudBlazor
+@inject ISnackbar Snackbar
 
-<MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
-    <MudTabPanel @ref="tab1" Text="List Students">
-       
-       <StudentsList/>
+
+<MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6" @ref="tabs">
+   
+    <MudTabPanel  Text="List Students" @ref="panel01" >
+
+        <StudentsList  />
 
     </MudTabPanel>
-    <MudTabPanel Text="Add Students">
-        <StudentAdd/>
+
+    <MudTabPanel Text="Add Students" @ref="panel02" >
+        <StudentAdd onAdded="Activate_01"/>
+     
     </MudTabPanel>
-    <MudTabPanel Text="Edit Students">
+
+    <MudTabPanel Text="Edit Students" @ref="panel03">
         <TabContent>This is tab content</TabContent>
         <ChildContent>THis is child contnt</ChildContent>
     </MudTabPanel>
     
         
     
-</MudTabs>
+</MudTabs >
+
 
 @code {
+    MudTabs tabs;
+    MudTabPanel panel01;
+    MudTabPanel panel02;
+    MudTabPanel panel03;
+
     bool _editItem = false;
 
     MudTabPanel tab1;
@@ -27,4 +39,13 @@
        
 
     }
+
+    void Activate_01()
+    {
+        tabs.ActivatePanel(panel01);
+        Snackbar.Add("Student Added", Severity.Success);
+       
+    }
+
+    
 }

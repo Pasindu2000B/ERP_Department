@@ -52,7 +52,14 @@
 
 
 @code {
+
+    [Parameter]
+    public EventCallback onAdded { get; set; }
+
+
     private Student model = new Student();
+
+    
 
     StudentModelValidator studentValidator = new StudentModelValidator();
     MudForm form;
@@ -110,8 +117,10 @@
         if (form.IsValid)
         {
             await AddStudentUseCase.ExecuteAsync(model);
+            await onAdded.InvokeAsync();            
         }
-
+        
+        
 
     }
 }
