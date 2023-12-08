@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Repository.PgSql", "Inf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Repository.SQLite", "Infrastructure\ERP.Repository.SQLite\ERP.Repository.SQLite.csproj", "{3CA846A6-349E-46F9-B083-B052FAF92B47}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.BlazorUI.Identity", "UI\ERP.BlazorUI.Identity\ERP.BlazorUI.Identity.csproj", "{483661FA-262E-4FB2-88BC-EF29170C5C8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{3CA846A6-349E-46F9-B083-B052FAF92B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CA846A6-349E-46F9-B083-B052FAF92B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CA846A6-349E-46F9-B083-B052FAF92B47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{483661FA-262E-4FB2-88BC-EF29170C5C8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{483661FA-262E-4FB2-88BC-EF29170C5C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{483661FA-262E-4FB2-88BC-EF29170C5C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{483661FA-262E-4FB2-88BC-EF29170C5C8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +105,7 @@ Global
 		{EC27267A-255D-4676-B245-7BE1F4223745} = {8DF9FC36-7E87-4797-8325-9179C049FD2C}
 		{3977C85E-6B8F-4D99-80FD-F30B4B445775} = {76750E1C-1DC9-4C05-AD01-9743BC1F697C}
 		{3CA846A6-349E-46F9-B083-B052FAF92B47} = {76750E1C-1DC9-4C05-AD01-9743BC1F697C}
+		{483661FA-262E-4FB2-88BC-EF29170C5C8C} = {E4CB65D1-5266-432A-888F-E8CACE4E52F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1889C393-DDA4-4DFB-A673-76CDC856705C}
