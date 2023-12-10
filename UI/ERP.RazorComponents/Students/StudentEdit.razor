@@ -31,8 +31,8 @@
                           Immediate="true"
                           Label="Email" />
 
-            <MudTextField @bind-Value="model.Address"
-                          For="@(() => model.Address)"
+            <MudTextField @bind-Value="model.Address1"
+                          For="@(() => model.Address1)"
                           Immediate="true"
                           Label="Address" />
 
@@ -84,7 +84,7 @@
                 .MustAsync(async (value, cancellationToken) => await IsUniqueAsync(value));
 
 
-            RuleFor(x => x.Address)
+            RuleFor(x => x.Address1)
                 .NotEmpty()
                 .Length(1, 100);
 

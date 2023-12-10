@@ -13,5 +13,14 @@ namespace ERP.Domain.Core.Entity
         public string Code { get; set; }
         public int Credits { get; set; }
 
+        public Teacher Coordinator { get; set; }
+        public Teacher Moderator { get; set; }
+        public Teacher ExternalModerator {  get; set; }
+
+        public  ICollection<ModuleTeacher> Teachers {get;set;}
+        public  ICollection<ModuleFirstExaminer> FirstExaminers {  get; set; }
+        public ICollection<ModuleSecondExaminer> SecondExaminers { get; set; }  
+
+
     }
 }
