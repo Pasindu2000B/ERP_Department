@@ -46,14 +46,10 @@ ConfigurationManager configuration = builder.Configuration;
 builder.Services.AddDbContextFactory<PgSqlDbContext>(opt => opt.UseNpgsql(configuration.GetConnectionString("PgSqlConnection"),
      b => b.MigrationsAssembly("ERP.Repository.PgSql")));
 
-builder.Services.AddMudServices();
-
 builder.Services.AddScoped<IStudentRepository, StudentRepositoryPgSql>();
-builder.Services.AddScoped<IViewStudentsByNameUseCase, ViewStudentsByNameUseCase>();
-builder.Services.AddScoped<IAddStudentUseCase, AddStudentUseCase>();
-builder.Services.AddScoped<IViewStudentById, ViewStudentById>();
-builder.Services.AddScoped<IEditStudentUseCase, EditStudentUseCase>();
 
+builder.Services.AddMudServices();
+builder.Services.AddStudentServices();
 
 var app = builder.Build();
 

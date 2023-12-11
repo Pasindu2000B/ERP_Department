@@ -14,7 +14,7 @@
     </HeaderContent>
     <RowTemplate>
         <MudTd DataLabel="Nr">@context.RegistrationNum</MudTd>
-        <MudTd DataLabel="Sign">@context.FullName</MudTd>
+        <MudTd DataLabel="Sign">@context.FirstName @context.LastName</MudTd>
         <MudTd DataLabel="Name">@context.Email</MudTd>
         <MudTd DataLabel="">
             <MudFab OnClick="@(()=> EditStudent(@context))"  Color="Color.Primary" 

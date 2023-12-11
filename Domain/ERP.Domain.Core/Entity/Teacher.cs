@@ -1,10 +1,10 @@
-﻿namespace ERP.Domain.Core.Entity
-{
-    public class Student
-    {
-        public int StudentId { get; set; }
-        public string RegistrationNum { get; set; } = string.Empty;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
+namespace ERP.Domain.Core.Entity
+{
+    public class Teacher 
+    {
+        public int TeacherId { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
@@ -17,7 +17,14 @@
         public string NationalID { get; set; } = string.Empty;
         public string PhoneNumber { get; set; } = string.Empty;
 
-        public Degree? Degree { get; set; }
-        public ICollection<Semester> Semesters { get; set; }
+        [InverseProperty("Coordinator")]
+        public ICollection<ModuleOffering> CordinatingModules {  get; set; }
+
+        public ICollection<ModuleOfferingTeacher> TeachingModules { get; set; }
+
+        public ICollection<ModuleOfferingFirstExaminer> FirstExaminersModules { get; set; }
+        public ICollection<ModuleOfferingSecondExaminer> SecondExaminersModules { get; set; }
+
+
     }
 }

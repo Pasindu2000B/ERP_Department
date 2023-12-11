@@ -38,7 +38,7 @@ namespace ERP.Repository.PgSql
                 student.LastName = std.LastName;
                 student.Email = std.Email;
                 student.Phone = std.Phone;
-                student.Address = std.Address;
+                student.Address1 = std.Address1;
             }
 
             return Task.CompletedTask;

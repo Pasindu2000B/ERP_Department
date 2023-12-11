@@ -21,13 +21,13 @@ namespace ERP.Repository.InMemory
                 FirstName = Faker.Name.First(),
                 LastName = Faker.Name.Last(),
                 Phone = Faker.Phone.Number(),
-                Address = Faker.Address.StreetAddress()
+                Address1 = Faker.Address.StreetAddress()
 
             }).ToList();
 
             foreach (var std in _students)
             {
-                std.Email = Faker.Internet.Email(std.FullName);
+                std.Email = Faker.Internet.Email(std.FirstName);
                 std.RegistrationNum = $"EG/2020/{std.StudentId}";
             }
         }
@@ -73,7 +73,7 @@ namespace ERP.Repository.InMemory
                 student.LastName = std.LastName;
                 student.Email = std.Email;
                 student.Phone = std.Phone;
-                student.Address = std.Address;
+                student.Address1 = std.Address1;
             }
 
             return Task.CompletedTask;
