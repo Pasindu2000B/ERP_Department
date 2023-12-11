@@ -16,5 +16,8 @@
         public DateOnly DoB { get; set; }
         public string NationalID { get; set; } = string.Empty;
         public string PhoneNumber { get; set; } = string.Empty;
+
+        public Degree? Degree { get; set; }
+        public ICollection<Semester> Semesters { get; set; }
     }
 }

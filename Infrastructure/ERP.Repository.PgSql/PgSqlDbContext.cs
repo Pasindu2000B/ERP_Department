@@ -16,41 +16,44 @@ namespace ERP.Repository.PgSql
         {
             modelBuilder.ApplyConfiguration(new StudentConfigurations());
             
-            modelBuilder.Entity<ModuleTeacher>()
-            .HasKey(mt => new { mt.ModuleId, mt.TeacherId });
+            modelBuilder.Entity<ModuleOfferingTeacher>()
+            .HasKey(mt => new { mt.ModuleOfferingId, mt.TeacherId });
 
-            modelBuilder.Entity<ModuleTeacher>()
-                .HasOne(mt => mt.Module)
+            modelBuilder.Entity<ModuleOfferingTeacher>()
+                .HasOne(mt => mt.ModuleOffering)
                 .WithMany(mt => mt.Teachers)
-                .HasForeignKey(mt => mt.ModuleId);
+                .HasForeignKey(mt => mt.ModuleOfferingId);
+     
 
-            modelBuilder.Entity<ModuleTeacher>()
+            modelBuilder.Entity<ModuleOfferingTeacher>()
                 .HasOne(mt => mt.Teacher)
                 .WithMany(mt => mt.TeachingModules)
                 .HasForeignKey(mt => mt.TeacherId);
 
 
-            modelBuilder.Entity<ModuleFirstExaminer>()
-                .HasKey(mf => new {mf.ModuleId,mf.TeacherId});
-            modelBuilder.Entity<ModuleFirstExaminer>()
-                .HasOne(mf => mf.Module)
+            modelBuilder.Entity<ModuleOfferingFirstExaminer>()
+                .HasKey(mf => new {mf.ModuleOfferingId,mf.TeacherId});
+
+            modelBuilder.Entity<ModuleOfferingFirstExaminer>()
+                .HasOne(mf => mf.ModuleOffering)
                 .WithMany(mf => mf.FirstExaminers)
                 .HasForeignKey(mf => mf.TeacherId);
 
-            modelBuilder.Entity<ModuleFirstExaminer>()
+            modelBuilder.Entity<ModuleOfferingFirstExaminer>()
                 .HasOne(mf => mf.Teacher)
                 .WithMany(mf => mf.FirstExaminersModules)
                 .HasForeignKey(mf =>mf.TeacherId);
 
 
-            modelBuilder.Entity<ModuleSecondExaminer>()
-                .HasKey(ms => new { ms.ModuleId, ms.TeacherId });
-            modelBuilder.Entity<ModuleSecondExaminer>()
-                .HasOne(ms => ms.Module)
+            modelBuilder.Entity<ModuleOfferingSecondExaminer>()
+                .HasKey(ms => new { ms.ModuleOfferingId, ms.TeacherId });
+
+            modelBuilder.Entity<ModuleOfferingSecondExaminer>()
+                .HasOne(ms => ms.ModuleOffering)
                 .WithMany(ms => ms.SecondExaminers)
                 .HasForeignKey(ms => ms.TeacherId);
 
-            modelBuilder.Entity<ModuleSecondExaminer>()
+            modelBuilder.Entity<ModuleOfferingSecondExaminer>()
                 .HasOne(ms => ms.Teacher)
                 .WithMany(ms => ms.SecondExaminersModules)
                 .HasForeignKey(ms => ms.TeacherId);
@@ -60,9 +63,9 @@ namespace ERP.Repository.PgSql
         public DbSet<Student> Students { get; set; }
         public DbSet<Module> Modules { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
-        public DbSet<ModuleTeacher> ModuleTeachers { get; set;}
-        public DbSet<ModuleFirstExaminer> ModuleFirstExaminers { get; set; }
-        public DbSet<ModuleSecondExaminer> ModuleSecondExaminers { get; set; }
+        public DbSet<ModuleOfferingTeacher> ModuleTeachers { get; set;}
+        public DbSet<ModuleOfferingFirstExaminer> ModuleFirstExaminers { get; set; }
+        public DbSet<ModuleOfferingSecondExaminer> ModuleSecondExaminers { get; set; }
 
     }
 }

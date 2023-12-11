@@ -18,12 +18,12 @@ namespace ERP.Domain.Core.Entity
         public string PhoneNumber { get; set; } = string.Empty;
 
         [InverseProperty("Coordinator")]
-        public ICollection<Module> CordinatingModules {  get; set; }
+        public ICollection<ModuleOffering> CordinatingModules {  get; set; }
 
-        public ICollection<ModuleTeacher> TeachingModules { get; set; }
+        public ICollection<ModuleOfferingTeacher> TeachingModules { get; set; }
 
-        public ICollection<ModuleFirstExaminer> FirstExaminersModules { get; set; }
-        public ICollection<ModuleSecondExaminer> SecondExaminersModules { get; set; }
+        public ICollection<ModuleOfferingFirstExaminer> FirstExaminersModules { get; set; }
+        public ICollection<ModuleOfferingSecondExaminer> SecondExaminersModules { get; set; }
 
 
     }
