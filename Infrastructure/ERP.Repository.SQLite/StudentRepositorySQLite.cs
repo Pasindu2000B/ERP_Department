@@ -1,5 +1,5 @@
 ﻿using ERP.Application.StudentApp.Interfaces;
-using ERP.Domain.Core.Entity;
+using ERP.Domain.Core.Entity.StudentEntity;
 using ERP.Repository.PgSql;
 using ERP.Repository.SQLite.Migrations;
 using Microsoft.EntityFrameworkCore;

@@ -1,4 +1,4 @@
-﻿using ERP.Domain.Core.Entity;
+﻿using ERP.Domain.Core.Entity.StudentEntity;
 
 namespace ERP.Application.StudentApp.Students.Interfaces
 {

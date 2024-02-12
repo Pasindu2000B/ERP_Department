@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Application\ERP.Application.DepartmentApp\ERP.Application.DepartmentApp.csproj" />
     <ProjectReference Include="..\..\Application\ERP.Application.StudentApp\ERP.Application.StudentApp.csproj" />
   </ItemGroup>
 

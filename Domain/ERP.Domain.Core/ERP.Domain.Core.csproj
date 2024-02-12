@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Entity\DepartmentEntity\AccreditationEntity\" />
+    <Folder Include="Entity\DepartmentEntity\RecruimentsEntity\" />
+  </ItemGroup>
+
 </Project>

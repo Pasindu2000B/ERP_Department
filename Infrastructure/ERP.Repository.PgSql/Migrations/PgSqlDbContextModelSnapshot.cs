@@ -22,7 +22,160 @@ namespace ERP.Repository.PgSql.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Batch", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.DepartmentEntity.GraduatesEntity.Graduate", b =>
+                {
+                    b.Property<int>("RegistrationNumber")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("RegistrationNumber"));
+
+                    b.Property<string>("Address1")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Address2")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("District")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateOnly>("DoB")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("RegistrationNumber");
+
+                    b.ToTable("graduates");
+                });
+
+            modelBuilder.Entity("ERP.Domain.Core.Entity.DepartmentEntity.LabEntity.LabEquipment", b =>
+                {
+                    b.Property<int>("LabEquipmentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("LabEquipmentID"));
+
+                    b.Property<bool>("Avaialability")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("LabEquipmentName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("LabSpaceId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("condition")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("LabEquipmentID");
+
+                    b.ToTable("LabEquipments");
+
+                    b.HasData(
+                        new
+                        {
+                            LabEquipmentID = 1001,
+                            Avaialability = false,
+                            LabEquipmentName = "Alison",
+                            LabSpaceId = 0,
+                            condition = "medium"
+                        },
+                        new
+                        {
+                            LabEquipmentID = 1002,
+                            Avaialability = false,
+                            LabEquipmentName = "Geovany",
+                            LabSpaceId = 0,
+                            condition = "bad"
+                        },
+                        new
+                        {
+                            LabEquipmentID = 1003,
+                            Avaialability = false,
+                            LabEquipmentName = "Dixie",
+                            LabSpaceId = 0,
+                            condition = "medium"
+                        });
+                });
+
+            modelBuilder.Entity("ERP.Domain.Core.Entity.DepartmentEntity.LabEntity.LabSpace", b =>
+                {
+                    b.Property<int>("LabSpaceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("LabSpaceId"));
+
+                    b.Property<bool>("LabSpaceIsFree")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("LabSpaceName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("maximumCapaciity")
+                        .HasColumnType("integer");
+
+                    b.HasKey("LabSpaceId");
+
+                    b.ToTable("LabSpaces");
+                });
+
+            modelBuilder.Entity("ERP.Domain.Core.Entity.DepartmentEntity.TrainingEntity.JobPost", b =>
+                {
+                    b.Property<int>("JobPostId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("JobPostId"));
+
+                    b.Property<string>("CompanyId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("JobCategory")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("JobPostName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("JobPostId");
+
+                    b.ToTable("JobPosts");
+                });
+
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Batch", b =>
                 {
                     b.Property<int>("BatchId")
                         .ValueGeneratedOnAdd()
@@ -42,7 +195,7 @@ namespace ERP.Repository.PgSql.Migrations
                     b.ToTable("Batch");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Curriculum", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Curriculum", b =>
                 {
                     b.Property<int>("CurriculumId")
                         .ValueGeneratedOnAdd()
@@ -60,7 +213,7 @@ namespace ERP.Repository.PgSql.Migrations
                     b.ToTable("Curriculum");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Degree", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Degree", b =>
                 {
                     b.Property<int>("DegreeId")
                         .ValueGeneratedOnAdd()
@@ -82,7 +235,7 @@ namespace ERP.Repository.PgSql.Migrations
                     b.ToTable("Degree");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Department", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Department", b =>
                 {
                     b.Property<int>("DepartmentId")
                         .ValueGeneratedOnAdd()
@@ -95,7 +248,7 @@ namespace ERP.Repository.PgSql.Migrations
                     b.ToTable("Department");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Evaluation", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Evaluation", b =>
                 {
                     b.Property<int>("EvaluationId")
                         .ValueGeneratedOnAdd()
@@ -125,7 +278,7 @@ namespace ERP.Repository.PgSql.Migrations
                     b.ToTable("Evaluation");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Module", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Module", b =>
                 {
                     b.Property<int>("ModuleId")
                         .ValueGeneratedOnAdd()
@@ -161,7 +314,7 @@ namespace ERP.Repository.PgSql.Migrations
                     b.ToTable("Modules");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.ModuleOffering", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.ModuleOffering", b =>
                 {
                     b.Property<int>("ModuleOfferingId")
                         .ValueGeneratedOnAdd()
@@ -199,7 +352,7 @@ namespace ERP.Repository.PgSql.Migrations
                     b.ToTable("ModuleOffering");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.ModuleOfferingFirstExaminer", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.ModuleOfferingFirstExaminer", b =>
                 {
                     b.Property<int>("ModuleOfferingId")
                         .HasColumnType("integer");
@@ -214,7 +367,7 @@ namespace ERP.Repository.PgSql.Migrations
                     b.ToTable("ModuleFirstExaminers");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.ModuleOfferingSecondExaminer", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.ModuleOfferingSecondExaminer", b =>
                 {
                     b.Property<int>("ModuleOfferingId")
                         .HasColumnType("integer");
@@ -229,7 +382,7 @@ namespace ERP.Repository.PgSql.Migrations
                     b.ToTable("ModuleSecondExaminers");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.ModuleOfferingTeacher", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.ModuleOfferingTeacher", b =>
                 {
                     b.Property<int>("ModuleOfferingId")
                         .HasColumnType("integer");
@@ -244,7 +397,7 @@ namespace ERP.Repository.PgSql.Migrations
                     b.ToTable("ModuleTeachers");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.ModuleRegistration", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.ModuleRegistration", b =>
                 {
                     b.Property<int>("ModuleRegistrationId")
                         .ValueGeneratedOnAdd()
@@ -267,7 +420,7 @@ namespace ERP.Repository.PgSql.Migrations
                     b.ToTable("ModuleRegistration");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Semester", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Semester", b =>
                 {
                     b.Property<int>("SemesterId")
                         .ValueGeneratedOnAdd()
@@ -305,7 +458,7 @@ namespace ERP.Repository.PgSql.Migrations
                     b.ToTable("Semester");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Student", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Student", b =>
                 {
                     b.Property<int>("StudentId")
                         .ValueGeneratedOnAdd()
@@ -343,6 +496,9 @@ namespace ERP.Repository.PgSql.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<double>("GPA")
+                        .HasColumnType("double precision");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("text");
@@ -378,13 +534,14 @@ namespace ERP.Repository.PgSql.Migrations
                             City = "",
                             District = "",
                             DoB = new DateOnly(1, 1, 1),
-                            Email = "Gail_Auer7@hotmail.com",
-                            FirstName = "Gail",
-                            LastName = "Auer",
+                            Email = "Alexzander_Dooley@hotmail.com",
+                            FirstName = "Alexzander",
+                            GPA = 0.0,
+                            LastName = "Dooley",
                             NationalID = "",
                             Phone = "",
                             PhoneNumber = "",
-                            RegistrationNum = "EG/2021/6447"
+                            RegistrationNum = "EG/2023/4048"
                         },
                         new
                         {
@@ -394,13 +551,14 @@ namespace ERP.Repository.PgSql.Migrations
                             City = "",
                             District = "",
                             DoB = new DateOnly(1, 1, 1),
-                            Email = "Jefferey.Kshlerin47@gmail.com",
-                            FirstName = "Jefferey",
-                            LastName = "Kshlerin",
+                            Email = "Alvera42@gmail.com",
+                            FirstName = "Alvera",
+                            GPA = 0.0,
+                            LastName = "Stroman",
                             NationalID = "",
                             Phone = "",
                             PhoneNumber = "",
-                            RegistrationNum = "EG/2023/6712"
+                            RegistrationNum = "EG/2023/8782"
                         },
                         new
                         {
@@ -410,129 +568,18 @@ namespace ERP.Repository.PgSql.Migrations
                             City = "",
                             District = "",
                             DoB = new DateOnly(1, 1, 1),
-                            Email = "Stevie35@hotmail.com",
-                            FirstName = "Stevie",
-                            LastName = "Bosco",
+                            Email = "Jarret15@gmail.com",
+                            FirstName = "Jarret",
+                            GPA = 0.0,
+                            LastName = "Stamm",
                             NationalID = "",
                             Phone = "",
                             PhoneNumber = "",
-                            RegistrationNum = "EG/2022/7796"
-                        },
-                        new
-                        {
-                            StudentId = 1004,
-                            Address1 = "",
-                            Address2 = "",
-                            City = "",
-                            District = "",
-                            DoB = new DateOnly(1, 1, 1),
-                            Email = "Christy_Moore76@gmail.com",
-                            FirstName = "Christy",
-                            LastName = "Moore",
-                            NationalID = "",
-                            Phone = "",
-                            PhoneNumber = "",
-                            RegistrationNum = "EG/2022/5728"
-                        },
-                        new
-                        {
-                            StudentId = 1005,
-                            Address1 = "",
-                            Address2 = "",
-                            City = "",
-                            District = "",
-                            DoB = new DateOnly(1, 1, 1),
-                            Email = "Glenda_Marks@yahoo.com",
-                            FirstName = "Glenda",
-                            LastName = "Marks",
-                            NationalID = "",
-                            Phone = "",
-                            PhoneNumber = "",
-                            RegistrationNum = "EG/2023/7424"
-                        },
-                        new
-                        {
-                            StudentId = 1006,
-                            Address1 = "",
-                            Address2 = "",
-                            City = "",
-                            District = "",
-                            DoB = new DateOnly(1, 1, 1),
-                            Email = "Mellie.Deckow83@gmail.com",
-                            FirstName = "Mellie",
-                            LastName = "Deckow",
-                            NationalID = "",
-                            Phone = "",
-                            PhoneNumber = "",
-                            RegistrationNum = "EG/2023/9723"
-                        },
-                        new
-                        {
-                            StudentId = 1007,
-                            Address1 = "",
-                            Address2 = "",
-                            City = "",
-                            District = "",
-                            DoB = new DateOnly(1, 1, 1),
-                            Email = "Noah_Mosciski74@yahoo.com",
-                            FirstName = "Noah",
-                            LastName = "Mosciski",
-                            NationalID = "",
-                            Phone = "",
-                            PhoneNumber = "",
-                            RegistrationNum = "EG/2020/7537"
-                        },
-                        new
-                        {
-                            StudentId = 1008,
-                            Address1 = "",
-                            Address2 = "",
-                            City = "",
-                            District = "",
-                            DoB = new DateOnly(1, 1, 1),
-                            Email = "Darrel29@yahoo.com",
-                            FirstName = "Darrel",
-                            LastName = "Goyette",
-                            NationalID = "",
-                            Phone = "",
-                            PhoneNumber = "",
-                            RegistrationNum = "EG/2020/1430"
-                        },
-                        new
-                        {
-                            StudentId = 1009,
-                            Address1 = "",
-                            Address2 = "",
-                            City = "",
-                            District = "",
-                            DoB = new DateOnly(1, 1, 1),
-                            Email = "Cary64@hotmail.com",
-                            FirstName = "Cary",
-                            LastName = "Senger",
-                            NationalID = "",
-                            Phone = "",
-                            PhoneNumber = "",
-                            RegistrationNum = "EG/2023/2956"
-                        },
-                        new
-                        {
-                            StudentId = 1010,
-                            Address1 = "",
-                            Address2 = "",
-                            City = "",
-                            District = "",
-                            DoB = new DateOnly(1, 1, 1),
-                            Email = "Coby66@hotmail.com",
-                            FirstName = "Coby",
-                            LastName = "O'Reilly",
-                            NationalID = "",
-                            Phone = "",
-                            PhoneNumber = "",
-                            RegistrationNum = "EG/2023/3277"
+                            RegistrationNum = "EG/2022/8242"
                         });
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentResult", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.StudentResult", b =>
                 {
                     b.Property<int>("StudentResultId")
                         .ValueGeneratedOnAdd()
@@ -558,7 +605,7 @@ namespace ERP.Repository.PgSql.Migrations
                     b.ToTable("StudentResult");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Teacher", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Teacher", b =>
                 {
                     b.Property<int>("TeacherId")
                         .ValueGeneratedOnAdd()
@@ -614,16 +661,16 @@ namespace ERP.Repository.PgSql.Migrations
                     b.ToTable("Teachers");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Curriculum", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Curriculum", b =>
                 {
-                    b.HasOne("ERP.Domain.Core.Entity.Degree", null)
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Degree", null)
                         .WithMany("Curricula")
                         .HasForeignKey("DegreeId");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Degree", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Degree", b =>
                 {
-                    b.HasOne("ERP.Domain.Core.Entity.Department", "Department")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -632,47 +679,47 @@ namespace ERP.Repository.PgSql.Migrations
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Evaluation", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Evaluation", b =>
                 {
-                    b.HasOne("ERP.Domain.Core.Entity.ModuleOffering", null)
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.ModuleOffering", null)
                         .WithMany("Evalutions")
                         .HasForeignKey("ModuleOfferingId");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Module", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Module", b =>
                 {
-                    b.HasOne("ERP.Domain.Core.Entity.Curriculum", null)
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Curriculum", null)
                         .WithMany("Modules")
                         .HasForeignKey("CurriculumId");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.ModuleOffering", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.ModuleOffering", b =>
                 {
-                    b.HasOne("ERP.Domain.Core.Entity.Teacher", "Coordinator")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Teacher", "Coordinator")
                         .WithMany("CordinatingModules")
                         .HasForeignKey("CoordinatorTeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ERP.Domain.Core.Entity.Teacher", "ExternalModerator")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Teacher", "ExternalModerator")
                         .WithMany()
                         .HasForeignKey("ExternalModeratorTeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ERP.Domain.Core.Entity.Teacher", "Moderator")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Teacher", "Moderator")
                         .WithMany()
                         .HasForeignKey("ModeratorTeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ERP.Domain.Core.Entity.Module", "Module")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Module", "Module")
                         .WithMany()
                         .HasForeignKey("ModuleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ERP.Domain.Core.Entity.Semester", "Semester")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Semester", "Semester")
                         .WithMany("Modules")
                         .HasForeignKey("SemesterId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -689,15 +736,15 @@ namespace ERP.Repository.PgSql.Migrations
                     b.Navigation("Semester");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.ModuleOfferingFirstExaminer", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.ModuleOfferingFirstExaminer", b =>
                 {
-                    b.HasOne("ERP.Domain.Core.Entity.ModuleOffering", "ModuleOffering")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.ModuleOffering", "ModuleOffering")
                         .WithMany("FirstExaminers")
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ERP.Domain.Core.Entity.Teacher", "Teacher")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Teacher", "Teacher")
                         .WithMany("FirstExaminersModules")
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -708,15 +755,15 @@ namespace ERP.Repository.PgSql.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.ModuleOfferingSecondExaminer", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.ModuleOfferingSecondExaminer", b =>
                 {
-                    b.HasOne("ERP.Domain.Core.Entity.ModuleOffering", "ModuleOffering")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.ModuleOffering", "ModuleOffering")
                         .WithMany("SecondExaminers")
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ERP.Domain.Core.Entity.Teacher", "Teacher")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Teacher", "Teacher")
                         .WithMany("SecondExaminersModules")
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -727,15 +774,15 @@ namespace ERP.Repository.PgSql.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.ModuleOfferingTeacher", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.ModuleOfferingTeacher", b =>
                 {
-                    b.HasOne("ERP.Domain.Core.Entity.ModuleOffering", "ModuleOffering")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.ModuleOffering", "ModuleOffering")
                         .WithMany("Teachers")
                         .HasForeignKey("ModuleOfferingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ERP.Domain.Core.Entity.Teacher", "Teacher")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Teacher", "Teacher")
                         .WithMany("TeachingModules")
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -746,15 +793,15 @@ namespace ERP.Repository.PgSql.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.ModuleRegistration", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.ModuleRegistration", b =>
                 {
-                    b.HasOne("ERP.Domain.Core.Entity.ModuleOffering", "Module")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.ModuleOffering", "Module")
                         .WithMany("Registrations")
                         .HasForeignKey("ModuleOfferingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ERP.Domain.Core.Entity.Student", "Student")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -765,21 +812,21 @@ namespace ERP.Repository.PgSql.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Semester", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Semester", b =>
                 {
-                    b.HasOne("ERP.Domain.Core.Entity.Batch", "Batch")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Batch", "Batch")
                         .WithMany()
                         .HasForeignKey("BatchId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ERP.Domain.Core.Entity.Degree", "Specialization")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Degree", "Specialization")
                         .WithMany()
                         .HasForeignKey("SpecializationDegreeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ERP.Domain.Core.Entity.Student", null)
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Student", null)
                         .WithMany("Semesters")
                         .HasForeignKey("StudentId");
 
@@ -788,22 +835,22 @@ namespace ERP.Repository.PgSql.Migrations
                     b.Navigation("Specialization");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Student", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Student", b =>
                 {
-                    b.HasOne("ERP.Domain.Core.Entity.Degree", "Degree")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Degree", "Degree")
                         .WithMany()
                         .HasForeignKey("DegreeId");
 
                     b.Navigation("Degree");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentResult", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.StudentResult", b =>
                 {
-                    b.HasOne("ERP.Domain.Core.Entity.Evaluation", null)
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Evaluation", null)
                         .WithMany("Results")
                         .HasForeignKey("EvaluationId");
 
-                    b.HasOne("ERP.Domain.Core.Entity.Student", "Student")
+                    b.HasOne("ERP.Domain.Core.Entity.StudentEntity.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -812,22 +859,22 @@ namespace ERP.Repository.PgSql.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Curriculum", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Curriculum", b =>
                 {
                     b.Navigation("Modules");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Degree", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Degree", b =>
                 {
                     b.Navigation("Curricula");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Evaluation", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Evaluation", b =>
                 {
                     b.Navigation("Results");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.ModuleOffering", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.ModuleOffering", b =>
                 {
                     b.Navigation("Evalutions");
 
@@ -840,17 +887,17 @@ namespace ERP.Repository.PgSql.Migrations
                     b.Navigation("Teachers");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Semester", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Semester", b =>
                 {
                     b.Navigation("Modules");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Student", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Student", b =>
                 {
                     b.Navigation("Semesters");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Core.Entity.Teacher", b =>
+            modelBuilder.Entity("ERP.Domain.Core.Entity.StudentEntity.Teacher", b =>
                 {
                     b.Navigation("CordinatingModules");
 

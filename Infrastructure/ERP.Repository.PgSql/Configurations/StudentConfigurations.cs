@@ -1,5 +1,4 @@
-﻿using ERP.Domain.Core.Entity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -7,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bogus;
+using ERP.Domain.Core.Entity.StudentEntity;
 
 namespace ERP.Repository.PgSql.Configurations
 {
@@ -15,9 +15,11 @@ namespace ERP.Repository.PgSql.Configurations
         public void Configure(EntityTypeBuilder<Student> builder)
         {
 
+
+
             builder.HasData(
 
-               Enumerable.Range(1, 10).Select(
+               Enumerable.Range(1, 3).Select(
                    index => new Faker<Student>()
                          .RuleFor(s => s.StudentId, index + 1000)
                          .RuleFor(s => s.FirstName, f => f.Name.FirstName())

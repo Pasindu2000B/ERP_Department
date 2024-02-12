@@ -1,4 +1,4 @@
-﻿@using ERP.Domain.Core.Entity
+﻿@using ERP.Domain.Core.Entity.StudentEntity
 @using FluentValidation
 @using ERP.Application.StudentApp.Students.Interfaces
 
@@ -99,7 +99,7 @@
 
         public Func<object, string, Task<IEnumerable<string>>> ValidateValue => async (model, propertyName) =>
         {
-            var result = await ValidateAsync(ValidationContext<Student>
+            var result = await ValidateAsync(ValidationContext<Student>  
                                 .CreateWithOptions((Student)model, x => x.IncludeProperties(propertyName)));
             if (result.IsValid)
                 return Array.Empty<string>();

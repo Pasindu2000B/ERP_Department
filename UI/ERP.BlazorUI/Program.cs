@@ -1,3 +1,7 @@
+using ERP.Application.DepartmentApp.Labs.Interfaces;
+using ERP.Application.DepartmentApp.Labs.UseCases;
+using ERP.Application.DepartmentApp.Labs.Repository;
+
 using ERP.Application.StudentApp.Interfaces;
 using ERP.Application.StudentApp.Students;
 using ERP.Application.StudentApp.Students.Interfaces;
@@ -8,6 +12,7 @@ using ERP.Repository.SQLite;
 using Microsoft.EntityFrameworkCore;
 
 using MudBlazor.Services;
+using ERP.Repository.PgSql.Department.Lab;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,12 +34,15 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddMudServices();
 
+
 builder.Services.AddScoped<IStudentRepository, StudentRepositoryPgSql>();
+builder.Services.AddScoped<ILabRepository,LabRepositoryPgSql>();
+builder.Services.AddScoped<IGetLabEquipmentListUseCase, GetLabEquipmentlistUseCase>();
 builder.Services.AddScoped<IViewStudentsByNameUseCase, ViewStudentsByNameUseCase>();
 builder.Services.AddScoped<IAddStudentUseCase, AddStudentUseCase>();
 builder.Services.AddScoped<IViewStudentById, ViewStudentById>();
 builder.Services.AddScoped<IEditStudentUseCase, EditStudentUseCase>();
-
+builder.Services.AddScoped<IAddLabEquipmentUseCase,AddNewLabEquipmentUseCase>();
 
 var app = builder.Build();
 

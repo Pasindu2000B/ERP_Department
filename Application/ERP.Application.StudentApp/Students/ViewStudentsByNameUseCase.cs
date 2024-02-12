@@ -1,6 +1,6 @@
 ﻿using ERP.Application.StudentApp.Interfaces;
 using ERP.Application.StudentApp.Students.Interfaces;
-using ERP.Domain.Core.Entity;
+using ERP.Domain.Core.Entity.StudentEntity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,11 @@
-﻿using ERP.Domain.Core.Entity;
+﻿using ERP.Domain.Core.Entity.DepartmentEntity.GraduatesEntity;
+using ERP.Domain.Core.Entity.DepartmentEntity.LabEntity;
+using ERP.Domain.Core.Entity.DepartmentEntity.TrainingEntity;
+using ERP.Domain.Core.Entity.StudentEntity;
 using ERP.Repository.PgSql.Configurations;
+using ERP.Repository.PgSql.Configurations.DepartmentPortalConfigurations;
+using ERP.Repository.PgSql.Configurations.DepartmentPortalConfigurations.LabConfigurations;
+using ERP.Repository.PgSql.Migrations;
 using Microsoft.EntityFrameworkCore;
 
 namespace ERP.Repository.PgSql
@@ -15,6 +21,9 @@ namespace ERP.Repository.PgSql
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new StudentConfigurations());
+            modelBuilder.ApplyConfiguration(new LabEquipmentConfiguration());
+            
+           
             
             modelBuilder.Entity<ModuleOfferingTeacher>()
             .HasKey(mt => new { mt.ModuleOfferingId, mt.TeacherId });
@@ -23,8 +32,8 @@ namespace ERP.Repository.PgSql
                 .HasOne(mt => mt.ModuleOffering)
                 .WithMany(mt => mt.Teachers)
                 .HasForeignKey(mt => mt.ModuleOfferingId);
-     
 
+           
             modelBuilder.Entity<ModuleOfferingTeacher>()
                 .HasOne(mt => mt.Teacher)
                 .WithMany(mt => mt.TeachingModules)
@@ -58,14 +67,25 @@ namespace ERP.Repository.PgSql
                 .WithMany(ms => ms.SecondExaminersModules)
                 .HasForeignKey(ms => ms.TeacherId);
 
+
+            
+
+
         }
 
+        public DbSet<LabEquipment> LabEquipments { get; set; }
+
+       
+        public DbSet<LabSpace> LabSpaces { get; set; }
+        public DbSet<JobPost> JobPosts { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Module> Modules { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<ModuleOfferingTeacher> ModuleTeachers { get; set;}
         public DbSet<ModuleOfferingFirstExaminer> ModuleFirstExaminers { get; set; }
         public DbSet<ModuleOfferingSecondExaminer> ModuleSecondExaminers { get; set; }
+
+        public DbSet<Graduate> graduates { get; set; }
 
     }
 }
